@@ -112,6 +112,10 @@ namespace GameShop.Controllers
         [HttpGet]
         public IActionResult Cart()
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
             List<Product> products = new List<Product>();
             foreach (var key in HttpContext.Session.Keys)
             {
@@ -150,6 +154,10 @@ namespace GameShop.Controllers
         [HttpGet]
         public IActionResult Checkout()
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
             if (HttpContext.Session.Keys.Count() < 2)
             {
                 return View("Checkout");

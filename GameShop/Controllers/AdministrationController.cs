@@ -1,5 +1,6 @@
 ﻿using GameShop.Models;
 using GameShop.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,10 @@ namespace GameShop.Controllers
         [HttpGet]
         public IActionResult AddProduct()
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
             AddProductViewModel apvm = new AddProductViewModel()
             {
                 Manufacturers = productRepository.GetManufacturers(),
@@ -73,6 +78,10 @@ namespace GameShop.Controllers
         [HttpGet]
         public IActionResult AddCompany()
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
             return View();
         }
 

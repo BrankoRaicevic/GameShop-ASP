@@ -78,3 +78,4 @@ D:\Visual Studio\source\repos\GameShop\GameShop\obj\Debug\net5.0\Razor\Views\Hom
 D:\Visual Studio\source\repos\GameShop\GameShop\obj\Debug\net5.0\Razor\Views\Home\Checkout.cshtml.g.cs
 D:\Visual Studio\source\repos\GameShop\GameShop\obj\Debug\net5.0\Razor\Views\Administration\AddProduct.cshtml.g.cs
 D:\Visual Studio\source\repos\GameShop\GameShop\obj\Debug\net5.0\Razor\Views\Administration\AddCompany.cshtml.g.cs
+D:\Visual Studio\source\repos\GameShop\GameShop\obj\Debug\net5.0\Razor\Views\Account\AccessDenied.cshtml.g.cs

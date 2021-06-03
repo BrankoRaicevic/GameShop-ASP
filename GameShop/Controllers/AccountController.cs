@@ -102,5 +102,11 @@ namespace GameShop.Controllers
             HttpContext.Session.Remove("username");
             return RedirectToAction("index", "home");
         }
+
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
     }
 }
