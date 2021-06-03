@@ -1,0 +1,58 @@
+﻿
+@model IEnumerable<Product>
+
+@{
+    ViewBag.Title = "Products";
+}
+
+<h1>All Products</h1>
+
+@if (Model.Any())
+{
+    double totalCost = 0;
+    foreach (var product in Model)
+    {
+        totalCost += product.Cost * (int)@Context.Session.GetInt32(product.ProductId.ToString());
+        <div class="card mb-3">
+            <div class="card-header">
+                Product Id : @product.ProductId
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@product.ProductName @if (product.ProductModel != null)@product.ProductModel  -  @product.Cost €</h5>
+                <h6 class="card-title">Amount: @Context.Session.GetInt32(product.ProductId.ToString())</h6>
+            </div>
+            <div class="card-footer">
+                <form method="post" asp-action="RemoveProduct" asp-route-id="@product.ProductId">
+                    <span id="confirmDeleteSpan_@product.ProductId" style="display:none">
+                        <span>Are you sure you want to delete?</span>
+                        <button type="submit" class="btn btn-danger">Yes</button>
+                        <a href="#" class="btn btn-primary"
+                           onclick="confirmDelete('@product.ProductName', false)">No</a>
+                    </span>
+
+                    <span id="deleteSpan_@product.ProductId">
+                        <a href="#" class="btn btn-danger"
+                           onclick="confirmDelete('@product.ProductId', true)">Delete</a>
+                    </span>
+                </form>
+            </div>
+        </div>
+    }
+<div class="card mb-3 card-footer">
+    <span>Total Cost: @totalCost</span>
+    <a asp-controller="home" asp-action="checkout" class="btn btn-primary" style="width: 100px">Checkout</a>
+</div>
+    }
+    else
+    {
+    <div class="card">
+        <div class="card-header">
+            No products added yet
+        </div>
+    </div>
+    }
+
+
+    @section Scripts {
+        <script src="~/js/CustomScript.js"></script>
+    }

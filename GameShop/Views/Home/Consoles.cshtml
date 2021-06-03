@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewBag.Title = "GameShop";
+}
+
+
+<div class="card-deck">
+    @foreach (var product in Model)
+    {
+    <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
+        <div class="card-header">
+            <a asp-controller="home" asp-action="details" asp-route-id="@product.ProductId"><h5>@product.ProductName @if (product.ProductModel != null)@product.ProductModel</h5></a>
+        </div>
+        <div class="card-footer @*text-center*@">
+            <h6>@product.Cost €</h6>
+        </div>
+    </div>
+    }
+</div>
